@@ -2,13 +2,16 @@ package com.example.afinally;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -23,6 +26,14 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
         this.events = events;
     }
 
+    public String getTime(int time){
+        String timeS;
+        if (time == 0) timeS = "12AM";
+        else if (0 < time && time < 12) timeS = String.valueOf(time) + "AM";
+        else timeS = String.valueOf(time -12) + "PM";
+        return timeS;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,12 +42,16 @@ public class AdapterUpcomingEvents extends RecyclerView.Adapter<AdapterUpcomingE
         return new AdapterUpcomingEvents.MyViewHolder(view).linkAdapter(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Event event = events.get(position);
         holder.location.setText(event.getLocation());
         holder.sport.setText(event.getSport());
-        holder.time.setText(event.getStart()+":00-"+event.getEnd()+":00");
+        String start = getTime(event.getStart()) ;
+        String end = getTime(event.getEnd());
+        holder.time.setText(String.valueOf(event.date.getDayOfMonth())+ "/" + String.valueOf(event.date.getMonthValue())
+                + "/" + String.valueOf(event.date.getYear()) + "  " + start + "-" + end);
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
         if(event.getSpotsLeft() == 0){

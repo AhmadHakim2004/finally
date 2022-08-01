@@ -1,13 +1,16 @@
 package com.example.afinally;
 
 import android.media.Image;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class Event {
+public class Event implements Comparable<Event>{
     /*
     Venue/Location
     Sport
@@ -20,11 +23,11 @@ public class Event {
     Players
      */
     String location, sport, image;
-    Date date;
+    LocalDate date;
     int start, end, capacity, spotsLeft;
     ArrayList<String> players;
 
-    public Event(String location, String sport, String image, Date date, int start, int end, int capacity, int spotsLeft, ArrayList<String> players) {
+    public Event(String location, String sport, String image, LocalDate date, int start, int end, int capacity, int spotsLeft, ArrayList<String> players) {
         this.location = location;
         this.sport = sport;
         this.image = image;
@@ -51,7 +54,7 @@ public class Event {
         return image;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -84,5 +87,19 @@ public class Event {
     @Override
     public int hashCode() {
         return Objects.hash(location, sport, image, start, end, capacity, spotsLeft);
+    }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public int compareTo(Event event) {
+        if (this.date.compareTo(event.date) > 0) return 1;
+        else if (this.date.compareTo(event.date) < 0) return -1;
+        else{
+            if(this.start > event.start) return 1;
+            else if(this.start< event.start) return -1;
+            else return 0;
+        }
     }
 }
