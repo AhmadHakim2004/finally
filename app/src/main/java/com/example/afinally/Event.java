@@ -1,29 +1,33 @@
 package com.example.afinally;
 
 import android.media.Image;
+import android.os.Build;
 
-import java.io.Serializable;
+import androidx.annotation.RequiresApi;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class Event implements Serializable {
+public class Event implements Comparable<Event>{
     /*
-    Venue
+    Venue/Location
     Sport
     Image
+    Date
     Start Time
     End Time
-    Date
     Capacity
     Spots Left
+    Players
      */
     String location, sport, image;
-//    Date date;
+    LocalDate date;
     int start, end, capacity, spotsLeft;
+    ArrayList<String> players;
 
-    public Event(String location, String sport, String image, int start, int end, int capacity, int spotsLeft) {
+    public Event(String location, String sport, String image, LocalDate date, int start, int end, int capacity, int spotsLeft, ArrayList<String> players) {
         this.location = location;
         this.sport = sport;
         this.image = image;
@@ -31,7 +35,11 @@ public class Event implements Serializable {
         this.end = end;
         this.capacity = capacity;
         this.spotsLeft = spotsLeft;
+        this.date = date;
+        this.players = players;
     }
+
+
 
 
     public String getLocation() {
@@ -46,9 +54,9 @@ public class Event implements Serializable {
         return image;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
+    public LocalDate getDate() {
+        return date;
+    }
 
     public int getStart() {
         return start;
@@ -66,6 +74,8 @@ public class Event implements Serializable {
         return spotsLeft;
     }
 
+    public ArrayList<String> getPlayers(){return players;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,5 +87,19 @@ public class Event implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(location, sport, image, start, end, capacity, spotsLeft);
+    }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public int compareTo(Event event) {
+        if (this.date.compareTo(event.date) > 0) return 1;
+        else if (this.date.compareTo(event.date) < 0) return -1;
+        else{
+            if(this.start > event.start) return 1;
+            else if(this.start< event.start) return -1;
+            else return 0;
+        }
     }
 }
