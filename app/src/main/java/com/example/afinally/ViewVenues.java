@@ -23,6 +23,8 @@ public class ViewVenues extends AppCompatActivity implements RecycleViewInterfac
 
         RecyclerView recyclerView  = findViewById(R.id.roviVenue);
         setUpVenues();
+        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(45);
+        recyclerView.addItemDecoration(itemDecorator);
         adapter = new AdapterVenues(this, venues, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
