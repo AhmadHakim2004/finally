@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewVenues(View view) {
+        Intent intent = new Intent(this, ViewVenues.class);
+        startActivity(intent);
+    }
+
 //    public void myEvents(View view) {
 //        Intent intent = new Intent(this, MY.class);
 //        startActivity(intent);

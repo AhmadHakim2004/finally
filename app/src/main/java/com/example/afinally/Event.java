@@ -2,12 +2,13 @@ package com.example.afinally;
 
 import android.media.Image;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class Event {
+public class Event implements Serializable {
     /*
     Venue
     Sport
