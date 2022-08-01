@@ -49,9 +49,9 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         holder.location.setText(event.getLocation());
         holder.sport.setText(event.getSport());
 
-        String start = getTime(event.getStart());
+        String start = getTime(event.getStart()) ;
         String end = getTime(event.getEnd());
-        holder.time.setText( start + "-" + end);
+        holder.time.setText(start + "-" + end);
         holder.cap.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
         holder.btn.setText("X");
@@ -68,7 +68,7 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         TextView location, sport, time, cap, sLeft;
         Button btn, yes, no;
         private AdapterMyEvents adapter;
-        private AlertDialog.Builder dB;
+        private AlertDialog.Builder d_builder;
         private AlertDialog dialog;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -90,13 +90,13 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         }
 
         private void createDialog() {
-            dB = new AlertDialog.Builder(adapter.context);
+            d_builder = new AlertDialog.Builder(adapter.context);
             LayoutInflater inflater2 = LayoutInflater.from(adapter.context);
             View view = inflater2.inflate(R.layout.yes_or_no, null);
             yes = view.findViewById(R.id.yes);
             no = view.findViewById(R.id.no);
-            dB.setView(view);
-            dialog = dB.create();
+            d_builder.setView(view);
+            dialog = d_builder.create();
             dialog.show();
 
             yes.setOnClickListener(new View.OnClickListener() {
