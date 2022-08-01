@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/timee"
+                android:id="@+id/timee_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -30,7 +30,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/spots"
+                android:id="@+id/spots_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -41,18 +41,18 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
-                android:id="@+id/capacity"
+                android:id="@+id/capacity_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="Capacity"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/spots"
+                app:layout_constraintBottom_toTopOf="@+id/spots_up"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
-                android:id="@+id/venue"
+                android:id="@+id/venue_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/sport"
+                android:id="@+id/sport_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -71,12 +71,12 @@
                 android:layout_marginBottom="8dp"
                 android:text="Sport"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/timee"
+                app:layout_constraintBottom_toTopOf="@+id/timee_up"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/venue" />
+                app:layout_constraintTop_toBottomOf="@+id/venue_up" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

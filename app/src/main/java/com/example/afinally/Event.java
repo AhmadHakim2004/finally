@@ -9,20 +9,22 @@ import java.util.Objects;
 
 public class Event {
     /*
-    Venue
+    Venue/Location
     Sport
     Image
+    Date
     Start Time
     End Time
-    Date
     Capacity
     Spots Left
+    Players
      */
     String location, sport, image;
-//    Date date;
+    Date date;
     int start, end, capacity, spotsLeft;
+    ArrayList<String> players;
 
-    public Event(String location, String sport, String image, int start, int end, int capacity, int spotsLeft) {
+    public Event(String location, String sport, String image, Date date, int start, int end, int capacity, int spotsLeft, ArrayList<String> players) {
         this.location = location;
         this.sport = sport;
         this.image = image;
@@ -30,7 +32,11 @@ public class Event {
         this.end = end;
         this.capacity = capacity;
         this.spotsLeft = spotsLeft;
+        this.date = date;
+        this.players = players;
     }
+
+
 
 
     public String getLocation() {
@@ -45,9 +51,9 @@ public class Event {
         return image;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
+    public Date getDate() {
+        return date;
+    }
 
     public int getStart() {
         return start;
@@ -64,6 +70,8 @@ public class Event {
     public int getSpotsLeft() {
         return spotsLeft;
     }
+
+    public ArrayList<String> getPlayers(){return players;}
 
     @Override
     public boolean equals(Object o) {

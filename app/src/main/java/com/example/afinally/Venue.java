@@ -16,9 +16,9 @@ public class Venue {
      */
     String location;
     ArrayList<String> sports;
-    List<Event> events;
     Image image;
     int start, end;
+    List<Event> events;
 
 
     public Venue(String location, ArrayList<String> sports, List<Event> events, Image image, int start, int end) {
