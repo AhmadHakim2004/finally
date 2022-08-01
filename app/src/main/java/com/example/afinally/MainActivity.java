@@ -1,7 +1,5 @@
 package com.example.afinally;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,15 +17,23 @@ public class MainActivity extends AppCompatActivity {
     }
     public void upEvents(View view) {
         Intent intent = new Intent(this, Scroll.class);
-        intent.putExtra("ind", "up");
         startActivity(intent);
     }
 
     public void myEvents(View view) {
         Intent intent = new Intent(this, Scroll.class);
-        intent.putExtra("ind", "my");
         startActivity(intent);
     }
+
+    public void viewVenues(View view) {
+        Intent intent = new Intent(this, ViewVenues.class);
+        startActivity(intent);
+    }
+
+//    public void myEvents(View view) {
+//        Intent intent = new Intent(this, MY.class);
+//        startActivity(intent);
+//    }
 
 
 

@@ -1,6 +1,5 @@
 package com.example.afinally;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyViewHolder>{
+public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyViewHolder> {
 
     Context context;
     ArrayList<Event> events;
@@ -23,38 +22,30 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
         this.events = events;
     }
 
-    public String getTime(int time){
-        String timeS;
-        if (time == 0) timeS = "12AM";
-        else if (0 < time && time < 12) timeS = String.valueOf(time) + "AM";
-        else timeS = String.valueOf(time -12) + "PM";
-        return timeS;
-    }
-
-
     @NonNull
     @Override
     public AdapterMyEvents.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.event_my, parent,false);
+        View view = inflater.inflate(R.layout.event, parent,false);
         return new AdapterMyEvents.MyViewHolder(view).linkAdapter(this);
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull AdapterMyEvents.MyViewHolder holder, int position) {
         Event event = events.get(position);
-        holder.location.setText(event.getLocation());
-        holder.sport.setText(event.getSport());
-
-        String start = getTime(event.getStart()) ;
-        String end = getTime(event.getEnd());
-        holder.time.setText(start + "-" + end);
-        holder.cap.setText("Capacity: "+event.getCapacity());
+        holder.makan.setText(event.getLocation());
+        holder.ryada.setText(event.getSport());
+        holder.wa2t.setText(event.getStart()+":00-"+event.getEnd()+":00");
+        holder.av.setText("Capacity: "+event.getCapacity());
         holder.sLeft.setText("Spot(s) left: "+event.getSpotsLeft());
-        holder.btn.setText("X");
+        holder.butt.setText("Cancel");
+//        if(event.getSpotsLeft() == 0) {
+//            holder.butt.setText("Unavailable");
+//            holder.butt.setClickable(false);
+//        }
+//        else if(event.getSpotsLeft() == event.getCapacity()) holder.butt.setText("Book");
+//        else holder.butt.setText("Join");
 
     }
 
@@ -65,57 +56,23 @@ public class AdapterMyEvents extends RecyclerView.Adapter<AdapterMyEvents.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView location, sport, time, cap, sLeft;
-        Button btn, yes, no;
+        TextView makan, ryada, wa2t, av, sLeft;
+        Button butt;
         private AdapterMyEvents adapter;
-        private AlertDialog.Builder d_builder;
-        private AlertDialog dialog;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            location = itemView.findViewById(R.id.venue_my);
-            sport = itemView.findViewById(R.id.sport_my);
-            time = itemView.findViewById(R.id.timee_my);
-            cap = itemView.findViewById(R.id.capacity_my);
-            sLeft = itemView.findViewById(R.id.spots_my);
-            btn = itemView.findViewById(R.id.button_my);
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    createDialog();
-                }
+            makan = itemView.findViewById(R.id.venue);
+            ryada = itemView.findViewById(R.id.sport);
+            wa2t = itemView.findViewById(R.id.timee);
+            av = itemView.findViewById(R.id.capacity);
+            sLeft = itemView.findViewById(R.id.spots);
+            butt = itemView.findViewById(R.id.button5);
+            butt.setOnClickListener(view -> {
+                adapter.events.remove(getAdapterPosition());
+                adapter.notifyItemRemoved(getAdapterPosition());
             });
-
-        }
-
-        private void createDialog() {
-            d_builder = new AlertDialog.Builder(adapter.context);
-            LayoutInflater inflater2 = LayoutInflater.from(adapter.context);
-            View view = inflater2.inflate(R.layout.yes_or_no, null);
-            yes = view.findViewById(R.id.yes);
-            no = view.findViewById(R.id.no);
-            d_builder.setView(view);
-            dialog = d_builder.create();
-            dialog.show();
-
-            yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    adapter.events.remove(getAdapterPosition());
-                    adapter.notifyItemRemoved(getAdapterPosition());
-                    dialog.dismiss();
-                }
-            });
-
-            no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                }
-            });
-
-
 
         }
 

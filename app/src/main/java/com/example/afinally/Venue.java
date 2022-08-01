@@ -14,14 +14,16 @@ public class Venue {
     End Time
     Arr of events
      */
+    String name;
     String location;
     ArrayList<String> sports;
-    Image image;
-    int start, end;
-    List<Event> events;
+    ArrayList<Event> events;
+    String image;
+    String start, end;
 
 
-    public Venue(String location, ArrayList<String> sports, List<Event> events, Image image, int start, int end) {
+    public Venue(String name, String location, ArrayList<String> sports, ArrayList<Event> events, String image, String start, String end) {
+        this.name = name;
         this.location = location;
         this.sports = sports;
         this.events = events;
@@ -30,6 +32,7 @@ public class Venue {
         this.end = end;
     }
 
+    public String getName() {return name;}
 
     public String getLocation() {
         return location;
@@ -39,19 +42,19 @@ public class Venue {
         return sports;
     }
 
-    public List<Event> getEvents() {
+    public ArrayList<Event> getEvents() {
         return events;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public int getStart() {
+    public String getStart() {
         return start;
     }
 
-    public int getEnd() {
+    public String getEnd() {
         return end;
     }
 }

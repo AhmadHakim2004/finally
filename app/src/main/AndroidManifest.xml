@@ -20,6 +20,11 @@
             android:name=".Scroll"
             android:exported="false" />
         <activity
+            android:name=".ViewVenues"
+            android:exported="false"/>
+        <activity android:name=".VenueView"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
